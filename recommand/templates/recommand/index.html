@@ -1,0 +1,13 @@
+{% extends 'main/base.html'%}
+
+{% block content %}
+
+<form action="{% url 'recommand:detail' %}" method="post">
+    {% csrf_token %}
+    <label for="wname">와인 이름 :</label>
+    <input type="text" id="wname" name="title" value="샤비뇽"><br>
+
+    <input type="submit" value="추천 받기~">
+  </form>
+
+{% endblock %}
