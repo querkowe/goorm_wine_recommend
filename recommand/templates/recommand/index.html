@@ -2,10 +2,16 @@
 
 {% block content %}
 
-<form action="{% url 'recommand:detail' %}" method="post">
+  <form action="{% url 'recommand:detail' %}" method="post">
     {% csrf_token %}
+    <label for="wgrade">와인 가격대 :</label>
+    <select class="wgrade" name="grade">
+      <option value="1">고가</option>
+      <option value="2">중가</option>
+      <option value="3">저가</option>
+    </select>
     <label for="wname">와인 이름 :</label>
-    <input type="text" id="wname" name="title" value="샤비뇽"><br>
+    <input type="text" id="wname" name="title" onfocus="this.value=''" value="2012 Beckstoffer Vineyard  Georges III Cabernet Sauvignon (Rutherford)"><br>
 
     <input type="submit" value="추천 받기~">
   </form>
