@@ -2,6 +2,13 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
+class ImageSrc(models.Model):
+    origin_index = models.IntegerField(default=0)
+    src = models.CharField(max_length=300)
+
+    class Meta:
+        db_table = 'imgsrc'
+
 
 class WineName(models.Model):
     origin_index = models.IntegerField(default=0)
