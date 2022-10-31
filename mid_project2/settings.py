@@ -12,6 +12,28 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+
+### Selenium for web scraping
+from webdriver_manager.chrome import ChromeDriverManager # 자동으로 크롬드라이버(가상브라우저) 파일을 다운로드해주는 라이브러리
+from selenium.webdriver.chrome.service import Service # 다운로드된 크롬드라이버 파일을 연결하기 위해 활용
+from selenium.webdriver.chrome.options import Options # Selenium header 변경
+
+from selenium import webdriver
+
+import warnings
+
+warnings.filterwarnings("ignore") # 불필요한 Warning 메시지를 꺼줍니다.
+
+SSERVICE = Service(executable_path=ChromeDriverManager().install())
+
+SOPTIONS = Options()
+SOPTIONS.headless = True
+
+SDRIVER = webdriver.Chrome(service=SSERVICE, options=SOPTIONS)
+
+SDRIVER.maximize_window()
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -32,7 +54,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'recommand',
-    'main',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -120,7 +141,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
